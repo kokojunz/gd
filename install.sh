@@ -4,9 +4,9 @@ set -e
 daili=''
 
 if [ -d /ql/data/config ];then
-    QLMainPath='/mnt/mmcblk2p4/qinglong'
+    QLMainPath='/ql'
 else
-    QLMainPath='/mnt/mmcblk2p4/qinglong'
+    QLMainPath='/ql'
 fi
 echo -e "\n\t\t\t你的青龙版本为:${QL_BRANCH}\n"
 
