@@ -26,7 +26,7 @@ welcome () {
 
 docker_check () {
     echo "正在检查 Docker 安装情况 . . ."
-    if command -v docker >> /dev/null 2>&1;
+    if command -v docker >> /mnt/mmcblk2p4/null 2>&1;
     then
         echo "Docker 似乎存在, 安装过程继续 . . ."
     else
@@ -52,7 +52,7 @@ build_docker () {
     printf "请输入 PagerMaid 容器的名称："
     read -r container_name <&1
     echo "正在拉取 Docker 镜像 . . ."
-    docker rm -f "$container_name" > /dev/null 2>&1
+    docker rm -f "$container_name" > /mnt/mmcblk2p4/null 2>&1
     docker pull mrwangzhe/pagermaid_modify
 }
 
@@ -82,10 +82,10 @@ data_persistence () {
                     printf "请输入 PagerMaid 容器的名称："
                     read -r container_name <&1
                 fi
-                if docker inspect $container_name &>/dev/null; then
+                if docker inspect $container_name &>/mnt/mmcblk2p4/null; then
                     docker cp $container_name:/pagermaid/workdir $data_path
-                    docker stop $container_name &>/dev/null
-                    docker rm $container_name &>/dev/null
+                    docker stop $container_name &>/mnt/mmcblk2p4/null
+                    docker rm $container_name &>/mnt/mmcblk2p4/null
                     docker run -dit -e PUID=$PUID -e PGID=$PGID -v $data_path/workdir:/pagermaid/workdir --restart=always --name="$container_name" --hostname="$container_name" mrwangzhe/pagermaid_modify <&1
                     echo
                     echo "数据持久化操作完成。"
@@ -123,8 +123,8 @@ cleanup () {
     printf "请输入 PagerMaid 容器的名称："
     read -r container_name <&1
     echo "开始删除 Docker 镜像 . . ."
-    if docker inspect $container_name &>/dev/null; then
-        docker rm -f "$container_name" &>/dev/null
+    if docker inspect $container_name &>/mnt/mmcblk2p4/null; then
+        docker rm -f "$container_name" &>/mnt/mmcblk2p4/null
         echo
         shon_online
     else
@@ -137,8 +137,8 @@ stop_pager () {
     printf "请输入 PagerMaid 容器的名称："
     read -r container_name <&1
     echo "正在关闭 Docker 镜像 . . ."
-    if docker inspect $container_name &>/dev/null; then
-        docker stop "$container_name" &>/dev/null
+    if docker inspect $container_name &>/mnt/mmcblk2p4/null; then
+        docker stop "$container_name" &>/mnt/mmcblk2p4/null
         echo
         shon_online
     else
@@ -151,8 +151,8 @@ start_pager () {
     printf "请输入 PagerMaid 容器的名称："
     read -r container_name <&1
     echo "正在启动 Docker 容器 . . ."
-    if docker inspect $container_name &>/dev/null; then
-        docker start $container_name &>/dev/null
+    if docker inspect $container_name &>/mnt/mmcblk2p4/null; then
+        docker start $container_name &>/mnt/mmcblk2p4/null
         echo
         echo "Docker 启动完毕。"
         echo
@@ -167,8 +167,8 @@ restart_pager () {
     printf "请输入 PagerMaid 容器的名称："
     read -r container_name <&1
     echo "正在重新启动 Docker 容器 . . ."
-    if docker inspect $container_name &>/dev/null; then
-        docker restart $container_name &>/dev/null
+    if docker inspect $container_name &>/mnt/mmcblk2p4/null; then
+        docker restart $container_name &>/mnt/mmcblk2p4/null
         echo
         echo "Docker 重新启动完毕。"
         echo
