@@ -4,7 +4,7 @@ set -e
 daili=''
 
 if [ -d /ql/data/config ];then
-    QLMainPath='/ql'
+    QLMainPath='/ql/data'
 else
     QLMainPath='/ql'
 fi
